@@ -1,4 +1,6 @@
 #include <iostream>
+#include <map>
+
 using namespace std;
 
 class Node{
@@ -92,6 +94,27 @@ void print(Node *tail){
     cout << endl;
 }
 
+bool ditectLoop(Node *head){
+
+    if(head == NULL){
+        return false;
+    }
+
+    map <Node*, bool> visited;
+
+    Node *temp = head;
+
+    while(temp != NULL){
+        if(visited[temp] == true){
+            return true;
+        }
+        
+        visited[temp] = true;
+        temp = temp -> next;
+    }
+    return false;
+}
+
 int main(){
 
     Node *tail = NULL;
@@ -110,8 +133,16 @@ int main(){
     print(tail);
 
 
-    deleteNode(tail, 5);
-    print(tail);
+    // deleteNode(tail, 5);
+    // print(tail);
+
+    if(ditectLoop){
+        cout << "Loop is Present!" << endl;
+    }
+    else{
+        cout << "Loop is not Present!" << endl;
+    }
+    cout << endl;
 
     return 0;
 }
